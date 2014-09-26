@@ -33,6 +33,12 @@ public class World {
 		}
 	}
 	
+	public void update(float delta){
+		for(int i = 0; i < objects.size();i++){
+			objects.get(i).update(delta);
+		}
+	}
+	
 	public void collide(Object obj1,Object obj2){//calculate velocities from collision
 		
 	}
