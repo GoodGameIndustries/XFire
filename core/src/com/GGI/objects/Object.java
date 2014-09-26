@@ -44,4 +44,8 @@ public class Object {
 		return shape;
 		
 	}
+	
+	public Vector2 getVelocity(){return velocity;}
+	public void setVelocity(Vector2 v){velocity.x=v.x;velocity.y=v.y;}
+	public double getMass(){return mass;}
 }
