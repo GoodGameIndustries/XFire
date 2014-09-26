@@ -39,4 +39,9 @@ public class Object {
 		position.add(velocity.scl(delta));
 		velocity.add(acceleration.scl(delta));
 	}
+	
+	public Polygon getShape(){
+		return shape;
+		
+	}
 }
