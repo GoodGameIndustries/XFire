@@ -3,8 +3,10 @@
  */
 package com.GGI.objects;
 
+import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Vector;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Shape;
 
 /**
  * @author Emmett Deen
@@ -12,10 +14,11 @@ import com.badlogic.gdx.math.Vector2;
  */
 public class Object {
 
-	private Vector2 position =new Vector2();
-	private Vector2 velocity =new Vector2();
-	private Vector2 acceleration = new Vector2();
-	private double mass;
+	protected Vector2 position =new Vector2();
+	protected Vector2 velocity =new Vector2();
+	protected Vector2 acceleration = new Vector2();
+	protected double mass;
+	protected Polygon shape;
 	
 	
 	public Object(){
