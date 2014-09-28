@@ -8,6 +8,9 @@ import com.GGI.physics.World;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
 
 /**
@@ -18,11 +21,17 @@ public class GameScreen implements Screen{
 
 	private Crossfire XF;
 	private World world;
+	private OrthographicCamera cam;
+	private float cX = (Gdx.graphics.getWidth()/100)/2, cY=(Gdx.graphics.getHeight()/100)/2;
+
+	private ShapeRenderer debug = new ShapeRenderer();
 	
 	public GameScreen(Crossfire XF){
 		this.XF=XF;
 		world=new World();
-		
+		this.cam = new OrthographicCamera(Gdx.graphics.getWidth()/100, Gdx.graphics.getHeight()/100);
+		this.cam.position.set(cX,cY,0);
+		this.cam.update();
 	}
 	
 	@Override
@@ -30,8 +39,23 @@ public class GameScreen implements Screen{
 		Gdx.gl.glClearColor(.1f, .1f, .1f, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
+		debug.setProjectionMatrix(cam.combined);
+		
 		world.update(delta);
-		world.checkHit();
+		
+		debug.begin(ShapeType.Line);
+		//debug.setColor(1, 1, 1, 1);
+		for(int i = 0; i < world.objects.size(); i++){
+			debug.polygon(world.objects.get(i).getShape().getVertices());
+		}
+		debug.end();
+		
+	//	
+		//world.checkHit();
+		
+		
+		
+		
 		
 	}
 

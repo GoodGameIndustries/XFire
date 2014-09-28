@@ -14,15 +14,20 @@ import com.badlogic.gdx.math.Intersector;
  *
  */
 public class World {
-	public ArrayList<Object> objects = new ArrayList<Object>();
+	public ArrayList<Marble> objects = new ArrayList<Marble>();
 	
 	private int Ms;//static friction
 	
 	
 	public World(){
-		
+		populate();
 	}
 	
+	private void populate() {
+		objects.add(new Marble(1f,1f,1f,1f,0,0));
+		
+	}
+
 	public void checkHit(){//hit detection
 		for(int i = 0; i < objects.size();i++){
 			for(int j = 0; j < objects.size();j++){
