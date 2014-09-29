@@ -45,8 +45,14 @@ public class GameScreen implements Screen{
 		
 		debug.begin(ShapeType.Line);
 		//debug.setColor(1, 1, 1, 1);
+		/*
 		for(int i = 0; i < world.objects.size(); i++){
 			debug.polygon(world.objects.get(i).getShape().getVertices());
+		}
+		*/
+		
+		for(int i = 0; i < world.objects.size(); i++){
+			debug.circle(world.objects.get(i).position.x,world.objects.get(i).position.y,world.objects.get(i).size,100);
 		}
 		debug.end();
 		

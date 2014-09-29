@@ -14,11 +14,11 @@ import com.badlogic.gdx.physics.box2d.Shape;
  */
 public class Object {
 
-	protected Vector2 position =new Vector2();
+	public Vector2 position =new Vector2();
 	protected Vector2 velocity =new Vector2();
 	protected Vector2 acceleration = new Vector2();
 	protected double mass;
-	protected Polygon shape;
+	//protected Polygon shape;
 	
 	
 	public Object(){
@@ -41,11 +41,12 @@ public class Object {
 		velocity.x=velocity.x+(acceleration.x*delta);
 		velocity.y=velocity.y+(acceleration.y*delta);
 	}
-	
+	/*
 	public Polygon getShape(){
 		return shape;
 		
 	}
+	*/
 	
 	public Vector2 getVelocity(){return velocity;}
 	public void setVelocity(Vector2 v){velocity.x=v.x;velocity.y=v.y;}
