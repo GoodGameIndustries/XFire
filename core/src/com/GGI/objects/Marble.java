@@ -13,7 +13,7 @@ import com.badlogic.gdx.math.Polygon;
  */
 public class Marble extends Object{
 
-	public float size = .5f;
+	public float size = .2f;
 	public Circle shape;
 	
 	public Marble(float xPos, float yPos, float xVel, float yVel, float xAcc, float yAcc){

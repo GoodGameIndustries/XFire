@@ -23,12 +23,13 @@ public class GameScreen implements Screen{
 	private World world;
 	private OrthographicCamera cam;
 	private float cX = (Gdx.graphics.getWidth()/100)/2, cY=(Gdx.graphics.getHeight()/100)/2;
+	private float mX = Gdx.graphics.getWidth()/100,mY=Gdx.graphics.getHeight()/100;
 
 	private ShapeRenderer debug = new ShapeRenderer();
 	
 	public GameScreen(Crossfire XF){
 		this.XF=XF;
-		world=new World();
+		world=new World(cX,cY,mX,mY);
 		this.cam = new OrthographicCamera(Gdx.graphics.getWidth()/100, Gdx.graphics.getHeight()/100);
 		this.cam.position.set(cX,cY,0);
 		this.cam.update();
