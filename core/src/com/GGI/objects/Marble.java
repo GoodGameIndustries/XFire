@@ -23,9 +23,21 @@ public class Marble extends Object{
 	public void update(float delta){
 		super.update(delta);
 		shape = new Polygon(new float[]{position.x+size,position.y,
+				position.x+(.866f*size),position.y+(.5f*size),
+				position.x+(.707f*size),position.y+(.707f*size),
+				position.x+(.5f*size),position.y+(.866f*size),
 				position.x,position.y+size,
+				position.x-(.5f*size),position.y+(.866f*size),
+				position.x-(.707f*size),position.y+(.707f*size),
+				position.x-(.866f*size),position.y+(.5f*size),
 				position.x-size,position.y,
-				position.x,position.y-size});
+				position.x-(.866f*size),position.y-(.5f*size),
+				position.x-(.707f*size),position.y-(.707f*size),
+				position.x-(.5f*size),position.y-(.866f*size),
+				position.x,position.y-size,
+				position.x+(.5f*size),position.y-(.866f*size),
+				position.x+(.707f*size),position.y-(.707f*size),
+				position.x+(.866f*size),position.y-(.5f*size)});
 	}
 	
 	

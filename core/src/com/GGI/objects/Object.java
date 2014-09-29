@@ -36,8 +36,10 @@ public class Object {
 	}
 	
 	public void update(float delta){
-		position.add(velocity.scl(delta));
-		velocity.add(acceleration.scl(delta));
+		position.x=position.x+(velocity.x*delta);
+		position.y=position.y+(velocity.y*delta);
+		velocity.x=velocity.x+(acceleration.x*delta);
+		velocity.y=velocity.y+(acceleration.y*delta);
 	}
 	
 	public Polygon getShape(){

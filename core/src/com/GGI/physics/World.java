@@ -24,7 +24,7 @@ public class World {
 	}
 	
 	private void populate() {
-		objects.add(new Marble(1f,1f,1f,1f,0,0));
+		objects.add(new Marble(1f,1f,1f,1f,0f,0f));
 		
 	}
 
