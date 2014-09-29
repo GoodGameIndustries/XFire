@@ -25,15 +25,18 @@ public class World {
 	
 	private void populate() {
 		objects.add(new Marble(1f,1f,1f,1f,0f,0f));
+		objects.add(new Marble(4f,1f,-1f,1f,0f,0f));
 		
 	}
 
 	public void checkHit(){//hit detection
 		for(int i = 0; i < objects.size();i++){
-			for(int j = 0; j < objects.size();j++){
+			for(int j = i+1; j < objects.size();j++){
 				if(Intersector.overlapConvexPolygons(objects.get(i).getShape(),objects.get(j).getShape())){
 					collide(objects.get(i),objects.get(j));
 				}
+				else{//System.out.println("collide");
+					}
 			}
 		}
 	}

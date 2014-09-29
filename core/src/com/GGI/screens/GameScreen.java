@@ -51,7 +51,7 @@ public class GameScreen implements Screen{
 		debug.end();
 		
 	//	
-		//world.checkHit();
+		world.checkHit();
 		
 		
 		
