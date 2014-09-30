@@ -9,6 +9,8 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 
@@ -25,7 +27,11 @@ public class GameScreen implements Screen{
 	private float cX = (Gdx.graphics.getWidth()/100)/2, cY=(Gdx.graphics.getHeight()/100)/2;
 	private float mX = Gdx.graphics.getWidth()/100,mY=Gdx.graphics.getHeight()/100;
 
+	private int w=Gdx.graphics.getWidth(),h=Gdx.graphics.getHeight();
+	
 	private ShapeRenderer debug = new ShapeRenderer();
+	private SpriteBatch pic = new SpriteBatch();
+	private Texture marble = new Texture(Gdx.files.internal("Marble.png"));
 	
 	public GameScreen(Crossfire XF){
 		this.XF=XF;
@@ -45,19 +51,15 @@ public class GameScreen implements Screen{
 		world.update(delta);
 		
 		debug.begin(ShapeType.Line);
-		//debug.setColor(1, 1, 1, 1);
-		/*
-		for(int i = 0; i < world.objects.size(); i++){
-			debug.polygon(world.objects.get(i).getShape().getVertices());
-		}
-		*/
-		
+		pic.begin();
 		for(int i = 0; i < world.objects.size(); i++){
 			debug.circle(world.objects.get(i).position.x,world.objects.get(i).position.y,world.objects.get(i).size,100);
+			//pic.draw(marble,(world.objects.get(i).position.x-(world.objects.get(i).size/2))*108,((world.objects.get(i).position.y-(world.objects.get(i).size/2)))*118,world.objects.get(i).size*108,world.objects.get(i).size*108);
 		}
+		pic.end();
 		debug.end();
 		
-	//	
+	
 		world.checkHit();
 		
 		
