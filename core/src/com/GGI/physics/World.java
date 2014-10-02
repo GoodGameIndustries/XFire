@@ -71,10 +71,31 @@ public class World {
 	public void collide(Marble obj1,Marble obj2){//calculate velocities from collision for marbles only
 		Vector2 v1=obj1.getVelocity(); Vector2 v2=obj2.getVelocity();
 		double m1=obj1.getMass(); double m2=obj2.getMass();
-		float v1x=(float) (((double)((m1-m2)/(m1+m2)))*v1.x)+(float)((double)(2*m2/((double)m1+m2)))*v2.x;//physics c textbook p.239
-		float v2x=(float) (((double)((m2-m1)/(m2+m1)))*v2.x)+(float)((double)(2*m1/((double)m2+m1)))*v1.x;//v1f=((m1-m2)/(m1+m2))*v1+(2m2/(m1+m2))*v2
-		float v1y=(float) (((double)((m1-m2)/(m1+m2)))*v1.y)+(float)((double)(2*m2/((double)m1+m2)))*v2.y;
-		float v2y=(float) (((double)((m2-m1)/(m2+m1)))*v2.y)+(float)((double)(2*m1/((double)m2+m1)))*v1.y;
+		float v1x, v1y, v2x, v2y;
+		if(v1.x==0 && v2.x!=0){
+			v1x=(float) ((((double)(2*m2))/((double)(m1+m2)))*v2.x);//p.238 physics C textbook
+			v2x=(float) (((double)(m2-m1)/(double)(m1+m2))*v2.x);
+		}
+		else if(v1.x!=0 && v2.x==0){
+			v1x=(float) ((double)(m1-m2)/(double)(m1+m2))*v1.x;
+			v2x=(float) ((double)(2*m1)/(double)(m1+m2))*v1.x;
+		}
+		else{
+			 v1x=(float) (((double)((m1-m2)/(m1+m2)))*v1.x)+(float)((double)(2*m2/((double)m1+m2)))*v2.x;//physics c textbook p.239
+		 	 v2x=(float) (((double)((m2-m1)/(m2+m1)))*v2.x)+(float)((double)(2*m1/((double)m2+m1)))*v1.x;//v1f=((m1-m2)/(m1+m2))*v1+(2m2/(m1+m2))*v2
+		}
+		if(v1.y==0 && v2.y!=0){
+			v1y=(float) ((((double)(2*m2))/((double)(m1+m2)))*v2.y);
+			v2y=(float) (((double)(m2-m1)/(double)(m1+m2))*v2.y);
+		}
+		else if(v1.y!=0 && v2.y==0){
+			v1y=(float) ((double)(m1-m2)/(double)(m1+m2))*v1.y;
+			v2y=(float) ((double)(2*m1)/(double)(m1+m2))*v1.y;
+		}
+		else{
+			v1y=(float) (((double)((m1-m2)/(m1+m2)))*v1.y)+(float)((double)(2*m2/((double)m1+m2)))*v2.y;
+			v2y=(float) (((double)((m2-m1)/(m2+m1)))*v2.y)+(float)((double)(2*m1/((double)m2+m1)))*v1.y;
+		}
 		obj1.setVelocity(new Vector2(v1x,v1y));obj2.setVelocity(new Vector2(v2x,v2y));
 	}
 	
