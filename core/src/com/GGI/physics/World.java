@@ -33,20 +33,23 @@ public class World {
 	}
 	
 	private void populate() {
-		objects.add(new Marble(1f,1f,3f,1.4f,0f,0f));
-		objects.add(new Marble(4f,3f,-1f,-3.3f,0f,0f));
-		objects.add(new Marble(1.5f,2f,-2.6f,-1.8f,0f,0f));
-		objects.add(new Marble(2f,4f,3f,-4f,0f,0f));
-		objects.add(new Marble(3f,2.5f,1f,-2.3f,0f,0f));
+		objects.add(new Marble(cX-4f,cY,0f,0f,0f,0f));
+		objects.add(new Marble(cX-2f,cY,0f,0f,0f,0f));
+		objects.add(new Marble(cX,cY,0f,0f,0f,0f));
+		objects.add(new Marble(cX+2f,cY,0f,0f,0f,0f));
+		objects.add(new Marble(cX+4f,cY,0f,0f,0f,0f));
+		
+		
 		
 	}
 
-	public void checkHit(){//hit detection
+	public void checkHit(float delta){//hit detection
 		
 		/**Checks hit between marbles*/
 		for(int i = 0; i < objects.size();i++){
-			for(int j = i+1; j < objects.size();j++){
-				if(Intersector.overlaps(objects.get(i).getShape(),objects.get(j).getShape())){
+			for(int j = i; j < objects.size();j++){
+				if(i==j){}
+				else if(Intersector.overlaps(objects.get(i).getShape(),objects.get(j).getShape())){
 					collide(objects.get(i),objects.get(j));	
 				}
 			}
@@ -56,6 +59,12 @@ public class World {
 		for(int i = 0;i<objects.size();i++){
 			for(int j = 0; j < centers.size();j++){
 				if(overlaps(centers.get(j).getShape(),objects.get(i).getShape())){
+					objects.get(i).position.x=objects.get(i).position.x-(objects.get(i).velocity.x*delta);
+					objects.get(i).position.y=objects.get(i).position.y-(objects.get(i).velocity.y*delta);
+					
+					objects.get(j).position.x=objects.get(j).position.x-(objects.get(j).velocity.x*delta);
+					objects.get(j).position.y=objects.get(j).position.y-(objects.get(j).velocity.y*delta);
+					
 					collide(objects.get(i),centers.get(j));
 				}
 			}

@@ -15,7 +15,7 @@ import com.badlogic.gdx.physics.box2d.Shape;
 public class Object {
 
 	public Vector2 position =new Vector2();
-	protected Vector2 velocity =new Vector2();
+	public Vector2 velocity =new Vector2();
 	protected Vector2 acceleration = new Vector2();
 	protected double mass;
 	//protected Polygon shape;

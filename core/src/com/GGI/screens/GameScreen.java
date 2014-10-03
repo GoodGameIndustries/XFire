@@ -4,8 +4,10 @@
 package com.GGI.screens;
 
 import com.GGI.crossfire.Crossfire;
+import com.GGI.objects.Marble;
 import com.GGI.physics.World;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -19,7 +21,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
  * @author Emmett Deen
  *
  */
-public class GameScreen implements Screen{
+public class GameScreen implements Screen,InputProcessor{
 
 	private Crossfire XF;
 	private World world;
@@ -53,14 +55,14 @@ public class GameScreen implements Screen{
 		debug.begin(ShapeType.Line);
 		pic.begin();
 		for(int i = 0; i < world.objects.size(); i++){
-			debug.circle(world.objects.get(i).position.x,world.objects.get(i).position.y,world.objects.get(i).size,100);
+			debug.circle(world.objects.get(i).position.x,world.objects.get(i).position.y,world.objects.get(i).size,10);
 			//pic.draw(marble,(world.objects.get(i).position.x-(world.objects.get(i).size/2))*108,((world.objects.get(i).position.y-(world.objects.get(i).size/2)))*118,world.objects.get(i).size*108,world.objects.get(i).size*108);
 		}
 		pic.end();
 		debug.end();
 		
 	
-		world.checkHit();
+		world.checkHit(delta);
 		
 		
 		
@@ -76,7 +78,7 @@ public class GameScreen implements Screen{
 
 	@Override
 	public void show() {
-		// TODO Auto-generated method stub
+		Gdx.input.setInputProcessor(this);
 		
 	}
 
@@ -102,6 +104,60 @@ public class GameScreen implements Screen{
 	public void dispose() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public boolean keyDown(int keycode) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean keyUp(int keycode) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean keyTyped(char character) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+		screenY = h-screenY;
+		
+		return true;
+	}
+
+	@Override
+	public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+		screenY = h-screenY;
+		float x = screenX/100;
+		float y = screenY/100;
+		if(y>1f&&y<cY){
+		world.objects.add(new Marble(cX,1f,(x-cX),5f,0,0));
+		}
+		return true;
+	}
+
+	@Override
+	public boolean touchDragged(int screenX, int screenY, int pointer) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean mouseMoved(int screenX, int screenY) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean scrolled(int amount) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
