@@ -16,8 +16,8 @@ public class Marble extends Object{
 	public float size = .2f;
 	public Circle shape;
 	
-	public Marble(float xPos, float yPos, float xVel, float yVel, float xAcc, float yAcc){
-	super(xPos,yPos,xVel,yVel,xAcc,yAcc,1.0);
+	public Marble(float xPos, float yPos, float xVel, float yVel, float xAcc, float yAcc,float fricConst){
+	super(xPos,yPos,xVel,yVel,xAcc,yAcc,1.0,fricConst);
 	
 	
 	}
