@@ -145,7 +145,7 @@ public class GameScreen implements Screen,InputProcessor{
 		screenY = h-screenY;
 		float x = screenX/100;
 		float y = screenY/100;
-		if(y>1f&&y<2*cY){
+		if(y>1f&&y<cY){
 		added.add(new Marble(cX,1f,(x-cX),5f,0,0,fricConst));
 		//world.objects.add(new Marble(cX,1f,(x-cX),5f,0,0,fricConst));
 		}
