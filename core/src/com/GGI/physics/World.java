@@ -26,12 +26,13 @@ public class World {
 	private float cX,cY,mX,mY;
 	private final float fricConst=(float) 0.40;
 	private int count=0;
-	
+	public Wall wall;
 	public World(float cX, float cY, float mX, float mY){
 		this.cX=cX;
 		this.cY=cY;
 		this.mX=mX;
 		this.mY=mY;
+		wall=new Wall(mX,mY);
 		populate();
 	}
 	
@@ -67,6 +68,17 @@ public class World {
 					
 					collide(objects.get(i),centers.get(j));
 				}
+			}
+		}
+		
+		/**Checks hit etween marbles and wall*/
+		for(int i = 0; i < objects.size();i++){
+			
+				if(Intersector.overlaps(objects.get(i).getShape(), wall.getShape())){
+				//do nothing	
+				}
+				else{
+					collide(objects.get(i));
 			}
 		}
 	}

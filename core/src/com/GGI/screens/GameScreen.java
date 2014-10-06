@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import com.GGI.crossfire.Crossfire;
 import com.GGI.objects.Marble;
+import com.GGI.objects.Wall;
 import com.GGI.physics.World;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
@@ -33,6 +34,7 @@ public class GameScreen implements Screen,InputProcessor{
 	private float mX = Gdx.graphics.getWidth()/100,mY=Gdx.graphics.getHeight()/100;
 	private float fricConst;
 	private int w=Gdx.graphics.getWidth(),h=Gdx.graphics.getHeight();
+	private Wall wall;
 	
 	private ShapeRenderer debug = new ShapeRenderer();
 	private SpriteBatch pic = new SpriteBatch();
@@ -46,6 +48,7 @@ public class GameScreen implements Screen,InputProcessor{
 		this.cam = new OrthographicCamera(Gdx.graphics.getWidth()/100, Gdx.graphics.getHeight()/100);
 		this.cam.position.set(cX,cY,0);
 		this.cam.update();
+		wall=world.wall;
 	}
 	
 	@Override
@@ -63,6 +66,7 @@ public class GameScreen implements Screen,InputProcessor{
 			debug.circle(world.objects.get(i).position.x,world.objects.get(i).position.y,world.objects.get(i).size,10);
 			//pic.draw(marble,(world.objects.get(i).position.x-(world.objects.get(i).size/2))*108,((world.objects.get(i).position.y-(world.objects.get(i).size/2)))*118,world.objects.get(i).size*108,world.objects.get(i).size*108);
 		}
+		    debug.rect(wall.position.x,wall.position.y,wall.getShape().x,wall.getShape().y);
 		pic.end();
 		debug.end();
 		
