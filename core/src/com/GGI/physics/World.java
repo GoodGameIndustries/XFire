@@ -43,12 +43,13 @@ public class World {
 		
 	}
 
-	public void checkHit(){//hit detection
+	public void checkHit(float delta){//hit detection
 		
 		/**Checks hit between marbles*/
 		for(int i = 0; i < objects.size();i++){
-			for(int j = i+1; j < objects.size();j++){
-				if(Intersector.overlaps(objects.get(i).getShape(),objects.get(j).getShape())){
+			for(int j = i; j < objects.size();j++){
+				if(i==j){}
+				else if(Intersector.overlaps(objects.get(i).getShape(),objects.get(j).getShape())){
 					collide(objects.get(i),objects.get(j));	
 				}
 			}
@@ -58,6 +59,12 @@ public class World {
 		for(int i = 0;i<objects.size();i++){
 			for(int j = 0; j < centers.size();j++){
 				if(overlaps(centers.get(j).getShape(),objects.get(i).getShape())){
+					objects.get(i).position.x=objects.get(i).position.x-(objects.get(i).velocity.x*delta);
+					objects.get(i).position.y=objects.get(i).position.y-(objects.get(i).velocity.y*delta);
+					
+					objects.get(j).position.x=objects.get(j).position.x-(objects.get(j).velocity.x*delta);
+					objects.get(j).position.y=objects.get(j).position.y-(objects.get(j).velocity.y*delta);
+					
 					collide(objects.get(i),centers.get(j));
 				}
 			}
