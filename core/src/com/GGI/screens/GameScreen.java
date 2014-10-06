@@ -3,12 +3,15 @@
  */
 package com.GGI.screens;
 
+import java.util.ArrayList;
+
 import com.GGI.crossfire.Crossfire;
 import com.GGI.objects.Marble;
 import com.GGI.physics.World;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -28,16 +31,18 @@ public class GameScreen implements Screen,InputProcessor{
 	private OrthographicCamera cam;
 	private float cX = (Gdx.graphics.getWidth()/100)/2, cY=(Gdx.graphics.getHeight()/100)/2;
 	private float mX = Gdx.graphics.getWidth()/100,mY=Gdx.graphics.getHeight()/100;
-
+	private float fricConst;
 	private int w=Gdx.graphics.getWidth(),h=Gdx.graphics.getHeight();
 	
 	private ShapeRenderer debug = new ShapeRenderer();
 	private SpriteBatch pic = new SpriteBatch();
 	private Texture marble = new Texture(Gdx.files.internal("Marble.png"));
-	
+	private ArrayList<Marble> added=new ArrayList<Marble>();
+	private int count;
 	public GameScreen(Crossfire XF){
 		this.XF=XF;
 		world=new World(cX,cY,mX,mY);
+		fricConst=world.getFricConst();
 		this.cam = new OrthographicCamera(Gdx.graphics.getWidth()/100, Gdx.graphics.getHeight()/100);
 		this.cam.position.set(cX,cY,0);
 		this.cam.update();
@@ -64,7 +69,11 @@ public class GameScreen implements Screen,InputProcessor{
 	
 		world.checkHit(delta);
 		
-		
+		for(Marble marble:added){world.addObjects(marble);}
+		count=world.getCount();
+		added.clear();System.out.println(count);
+		count=count+1;count=(count>20)?20:count;
+		world.setCount(count);
 		
 		
 		
@@ -136,8 +145,9 @@ public class GameScreen implements Screen,InputProcessor{
 		screenY = h-screenY;
 		float x = screenX/100;
 		float y = screenY/100;
-		if(y>1f&&y<cY){
-		world.objects.add(new Marble(cX,1f,(x-cX),5f,0,0,0));
+		if(y>1f&&y<2*cY){
+		added.add(new Marble(cX,1f,(x-cX),5f,0,0,fricConst));
+		//world.objects.add(new Marble(cX,1f,(x-cX),5f,0,0,fricConst));
 		}
 		return true;
 	}

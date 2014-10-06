@@ -43,7 +43,7 @@ public class Object {
 		position.y=position.y+(velocity.y*delta);
 		velocity.x=(velocity.x>0)?velocity.x+(acceleration.x*delta):0;
 		velocity.y=(velocity.y>0)?velocity.y+(acceleration.y*delta):0;
-		System.out.println("x: "+velocity.x+" y: "+velocity.y);
+		
 	}
 	/*
 	public Polygon getShape(){

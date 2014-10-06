@@ -25,6 +25,7 @@ public class World {
 	private int Ms;//static friction
 	private float cX,cY,mX,mY;
 	private final float fricConst=(float) 0.40;
+	private int count=0;
 	
 	public World(float cX, float cY, float mX, float mY){
 		this.cX=cX;
@@ -35,12 +36,11 @@ public class World {
 	}
 	
 	private void populate() {
-		objects.add(new Marble(1f,1f,3f,1.4f,0f,0f,fricConst));
-		objects.add(new Marble(4f,3f,-1f,-3.3f,0f,0f,fricConst));
-		objects.add(new Marble(1.5f,2f,-2.6f,-1.8f,0f,0f,fricConst));
-		objects.add(new Marble(2f,4f,3f,-4f,0f,0f,fricConst));
-		objects.add(new Marble(3f,2.5f,1f,-2.3f,0f,0f,fricConst));
-		
+		objects.add(new Marble(cX-4f,cY,0f,0f,0f,0f,fricConst));
+		objects.add(new Marble(cX-2f,cY,0f,0f,0f,0f,fricConst));
+		objects.add(new Marble(cX,cY,0f,0f,0f,0f,fricConst));
+		objects.add(new Marble(cX+2f,cY,0f,0f,0f,0f,fricConst));
+		objects.add(new Marble(cX+4f,cY,0f,0f,0f,0f,fricConst));
 	}
 
 	public void checkHit(float delta){//hit detection
@@ -135,4 +135,15 @@ public class World {
 	    }
 	    return false;
 	}
+	
+	public float getFricConst(){return fricConst;}
+	
+	public void addObjects(Marble marble){
+		if(count!=20){return;}
+		else{objects.add(marble);count=0;}
+	}
+	
+	public int getCount(){return count;}
+	public void setCount(int count){this.count=count;}
+	
 }
