@@ -41,8 +41,12 @@ public class Object {
 		acceleration.x=-fricConst;acceleration.y=-fricConst;
 		position.x=position.x+(velocity.x*delta);
 		position.y=position.y+(velocity.y*delta);
-		velocity.x=(velocity.x>0)?velocity.x+(acceleration.x*delta):0;
-		velocity.y=(velocity.y>0)?velocity.y+(acceleration.y*delta):0;
+		//velocity.x=(velocity.x>0)?velocity.x+(acceleration.x*delta):0;
+		//velocity.y=(velocity.y>0)?velocity.y+(acceleration.y*delta):0;
+		if(velocity.x>=0){velocity.x=velocity.x+acceleration.x*delta;}
+		else{velocity.x=velocity.x-acceleration.x*delta;}
+		if(velocity.y>=0){velocity.y=velocity.y+acceleration.y*delta;}
+		else{velocity.y=velocity.y-acceleration.y*delta;}
 		
 	}
 	/*

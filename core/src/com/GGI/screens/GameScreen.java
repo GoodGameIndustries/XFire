@@ -76,7 +76,7 @@ public class GameScreen implements Screen,InputProcessor{
 		for(Marble marble:added){world.addObjects(marble);}
 		count=world.getCount();
 		added.clear();System.out.println(count);
-		count=count+1;count=(count>20)?20:count;
+		count=count+1;count=(count>100)?100:count;
 		world.setCount(count);
 		
 		
@@ -149,6 +149,7 @@ public class GameScreen implements Screen,InputProcessor{
 		screenY = h-screenY;
 		float x = screenX/100;
 		float y = screenY/100;
+		System.out.println("x: "+x+" y: "+y);
 		if(y>1f&&y<cY){
 		added.add(new Marble(cX,1f,(x-cX),5f,0,0,fricConst));
 		//world.objects.add(new Marble(cX,1f,(x-cX),5f,0,0,fricConst));

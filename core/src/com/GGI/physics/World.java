@@ -24,7 +24,7 @@ public class World {
 	
 	private int Ms;//static friction
 	private float cX,cY,mX,mY;
-	private final float fricConst=(float) 0.40;
+	private final float fricConst=(float) 1;
 	private int count=0;
 	public Wall wall;
 	public World(float cX, float cY, float mX, float mY){
@@ -151,7 +151,7 @@ public class World {
 	public float getFricConst(){return fricConst;}
 	
 	public void addObjects(Marble marble){
-		if(count!=20){return;}
+		if(count!=100){return;}
 		else{objects.add(marble);count=0;}
 	}
 	
